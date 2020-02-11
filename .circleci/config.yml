@@ -15,3 +15,7 @@ jobs:
           name: build docket image
           command: |
             echo "test2"
+      - run:
+          name: test3
+          command: |
+            echo "test3"
