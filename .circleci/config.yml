@@ -19,3 +19,7 @@ jobs:
           name: test3
           command: |
             echo "test3"
+      - run:
+          name: test4
+          command: |
+            echo "test4"
