@@ -9,8 +9,7 @@ jobs:
       - run: sudo chown -R circleci:circleci /usr/local/lib/python3.7/site-packages
       - run:
           command: |
-            pip install pipenv
-            pipenv sync --dev
+            pip install flake8
       - run:
           command: |
             export AWS_REGION_NAME='ap-northeast-1'
@@ -20,4 +19,4 @@ jobs:
       - run:
           name: run linting and metrics
           command: |
-            pipenv run flake8 src/ tests/
+            flake8 src/ tests/
