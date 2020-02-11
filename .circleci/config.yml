@@ -1,25 +1,18 @@
+version: 2
 jobs:
   build:
     docker:
       - image: circleci/python:3.7.3
-    parameters:
-      python-version:
-        type: string
+    working_directory: ~/repo
     steps:
       - checkout
-      - run: 
-          name: set aws-cli
-          command: |
-            echo "test"
-      - run:
-          name: build docket image
-          command: |
-            echo "test2"
-      - run:
-          name: test3
-          command: |
-            echo "test3"
-      - run:
-          name: test4
-          command: |
-            echo "test4"
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-
+      - run: yarn install
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+      - run: yarn test
